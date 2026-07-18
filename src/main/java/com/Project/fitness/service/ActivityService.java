@@ -3,11 +3,18 @@ package com.Project.fitness.service;
 import com.Project.fitness.dto.ActivityRequest;
 import com.Project.fitness.dto.ActivityResponse;
 import com.Project.fitness.model.Activity;
+import com.Project.fitness.model.ActivityType;
 import com.Project.fitness.model.User;
 import com.Project.fitness.repository.ActivityRepository;
 import com.Project.fitness.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.util.GenericSignature;
+import org.hibernate.sql.ast.tree.expression.LiteralAsParameter;
+import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -46,4 +53,13 @@ public class ActivityService {
                 .additionalMetrics(savedActivity.getAdditionalMetrics())
                 .build();
     }
+
+    public List<ActivityResponse> retrieveActivity(String userId) {
+        List<Activity> activityList = activityRepository.findByUserId(userId);
+
+        return activityList.stream()
+                .map(this::mappedToActivityResponse)
+                .collect(Collectors.toList());
+    }
+
 }
