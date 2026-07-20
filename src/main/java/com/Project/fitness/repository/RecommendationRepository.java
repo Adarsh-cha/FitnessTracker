@@ -1,6 +1,5 @@
 package com.Project.fitness.repository;
 
-import com.Project.fitness.model.Activity;
 import com.Project.fitness.model.Recommendation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

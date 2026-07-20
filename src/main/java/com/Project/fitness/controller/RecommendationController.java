@@ -2,7 +2,6 @@ package com.Project.fitness.controller;
 
 import com.Project.fitness.dto.RecommendationRequest;
 import com.Project.fitness.dto.RecommendationResponse;
-import com.Project.fitness.model.Recommendation;
 import com.Project.fitness.service.RecommendationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

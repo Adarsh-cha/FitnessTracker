@@ -3,14 +3,10 @@ package com.Project.fitness.service;
 import com.Project.fitness.dto.ActivityRequest;
 import com.Project.fitness.dto.ActivityResponse;
 import com.Project.fitness.model.Activity;
-import com.Project.fitness.model.ActivityType;
 import com.Project.fitness.model.User;
 import com.Project.fitness.repository.ActivityRepository;
 import com.Project.fitness.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.util.GenericSignature;
-import org.hibernate.sql.ast.tree.expression.LiteralAsParameter;
-import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
