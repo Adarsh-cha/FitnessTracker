@@ -5,17 +5,12 @@ import com.Project.fitness.dto.LoginResponse;
 import com.Project.fitness.dto.RegisterRequest;
 import com.Project.fitness.dto.UserResponse;
 import com.Project.fitness.model.User;
-import com.Project.fitness.repository.UserRepository;
 import com.Project.fitness.security.JwtUtils;
 import com.Project.fitness.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,8 +36,7 @@ public class AuthController {
 
             String token = jwtUtils.generateToken(user.getId(), user.getRole().name());
             return ResponseEntity.ok(new LoginResponse(token, userService.mappedUserResponse(user)));
-        } catch (AuthenticationException e) {
-            e.getSuppressed();
+        } catch (RuntimeException e) {
             return ResponseEntity.status(401).build();
         }
     }
