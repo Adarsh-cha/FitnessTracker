@@ -42,10 +42,11 @@ public class JwtUtils {
         try {
             Jwts.parser().verifyWith((SecretKey) key()).build()
                     .parseSignedClaims(jwtToken);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-        return true;
     }
 
     private Key key() {
@@ -60,8 +61,8 @@ public class JwtUtils {
     }
 
     public Claims getAllClaims(String jwt) {
-        return Jwts.parser().verifyWith((SecretKey) key()).build().
-                parseSignedClaims(jwt)
+        return Jwts.parser().verifyWith((SecretKey) key()).build()
+                .parseSignedClaims(jwt)
                 .getPayload();
     }
 }

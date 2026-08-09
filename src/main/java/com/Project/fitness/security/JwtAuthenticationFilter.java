@@ -30,6 +30,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if (jwt != null && jwtUtils.validateToken(jwt)) {
                 String userID = jwtUtils.getUserIDFromToken(jwt);
 
+//                UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
+
                 Claims claims = jwtUtils.getAllClaims(jwt);
 
                 List<String> roles = claims.get("roles", List.class);
