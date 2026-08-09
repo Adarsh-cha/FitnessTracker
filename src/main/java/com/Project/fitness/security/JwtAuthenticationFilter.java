@@ -30,8 +30,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if (jwt != null && jwtUtils.validateToken(jwt)) {
                 String userID = jwtUtils.getUserIDFromToken(jwt);
 
-//                UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
-
                 Claims claims = jwtUtils.getAllClaims(jwt);
 
                 List<String> roles = claims.get("roles", List.class);
@@ -55,6 +53,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
+
     private String getParseJwt(HttpServletRequest request) {
         String jwt = jwtUtils.getJwtFromHeader(request);
         return jwt;

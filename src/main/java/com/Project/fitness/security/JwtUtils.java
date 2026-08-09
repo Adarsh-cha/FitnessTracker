@@ -18,15 +18,6 @@ public class JwtUtils {
     private String jwtSecret = "YS1zdHJpbmctc2VjcmV0LWF0LWxlYXN0LTI1Ni1iaXRzLWxvbmc=";
     private int jwtExpirationMS= 172_800_000;
 
-    public String getJwtFromHeader(HttpServletRequest request) {
-        String bearerJwt = request.getHeader("Authorization");
-
-        if (bearerJwt != null && bearerJwt.startsWith("Bearer ")) {
-            return bearerJwt.substring(7);
-        }
-        return null;
-    }
-
     public String generateToken(String userId, String userRole) {
         return Jwts.builder()
                 .subject(userId)
@@ -35,6 +26,15 @@ public class JwtUtils {
                 .expiration(new Date(new Date().getTime() + jwtExpirationMS))
                 .signWith(key())
                 .compact();
+    }
+
+    public String getJwtFromHeader(HttpServletRequest request) {
+        String bearerJwt = request.getHeader("Authorization");
+
+        if (bearerJwt != null && bearerJwt.startsWith("Bearer ")) {
+            return bearerJwt.substring(7);
+        }
+        return null;
     }
 
     public boolean validateToken(String jwtToken) {
