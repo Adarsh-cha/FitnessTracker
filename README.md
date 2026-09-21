@@ -1,45 +1,34 @@
-🏋️ FitnessTracker
+# 🏋️ FitnessTracker
 
-A backend-focused fitness tracking REST API built with Java, Spring Boot, Spring Data JPA, PostgreSQL, Spring Security, JWT, and Docker.
+A backend-focused fitness tracking REST API built with **Java, Spring Boot, Spring Data JPA, PostgreSQL, Spring Security, JWT, and Docker**.
 
 FitnessTracker allows users to securely manage their fitness activities through REST APIs. The application implements authentication, authorization, CRUD operations, database persistence, request validation, and API documentation with Swagger/OpenAPI.
 
-🚀 Features
+---
 
-1. 🔐 User authentication and authorization
-2. JWT-based authentication
-3. 👤 User management
-4. 🏃 Fitness activity tracking
-5. ➕ Create fitness activities
-6. 📋 View fitness activities
-7. ✏️ Update fitness activities
-8. 🗑️ Delete fitness activities
-9. PostgreSQL database integration
-10. 🔗 RESTful APIs
-11. ✅ Request validation
-12. 📖 Swagger/OpenAPI API documentation
-13. 🐳 Docker support
-14. Layered Spring Boot architecture
+## 🚀 Features
 
-🛠️ Tech Stack
-Technology	Purpose
-Java 21	Programming language
-Spring Boot	Backend framework
-Spring Web	REST API development
-Spring Data JPA	Database interaction
-Hibernate	ORM
-PostgreSQL	Relational database
-Spring Security	Authentication & authorization
-JWT	Stateless authentication
-Lombok	Boilerplate code reduction
-Maven	Dependency management & build
-Swagger / OpenAPI	API documentation
-Docker	Containerization
+- 🔐 User authentication and authorization
+- 🎫 JWT-based authentication
+- 👤 User management
+- 🏃 Fitness activity tracking
+- ➕ Create fitness activities
+- 📋 View fitness activities
+- ✏️ Update fitness activities
+- 🗑️ Delete fitness activities
+- 🗄️ PostgreSQL database integration
+- 🔗 RESTful APIs
+- ✅ Request validation
+- 📖 Swagger/OpenAPI API documentation
+- 🐳 Docker support
+- 🧩 Layered Spring Boot architecture
+
+---
 
 ## 🛠️ Tech Stack
 
 | Technology        | Purpose                        |
-| ----------------- | ------------------------------ |
+|-------------------|--------------------------------|
 | Java 21           | Programming language           |
 | Spring Boot       | Backend framework              |
 | Spring Web        | REST API development           |
@@ -53,6 +42,7 @@ Docker	Containerization
 | Swagger / OpenAPI | API documentation              |
 | Docker            | Containerization               |
 
+---
 
 ## 🏗️ Architecture
 
@@ -84,11 +74,11 @@ The application follows a layered architecture:
           │   PostgreSQL    │
           │    Database     │
           └─────────────────┘
+```
 
+### 🔐 Authentication Flow
 
-
-Authentication Flow: 
-
+```text
 User
  │
  │ Login
@@ -116,28 +106,39 @@ Validate Token
  │
  ▼
 Protected API
+```
 
-🔐 Authentication & Authorization
-The application uses Spring Security with JWT for stateless authentication.
+---
 
-Authentication Flow
-User submits login credentials.
-Spring Security authenticates the user.
-The application generates a JWT.
-The client stores the token.
-The token is sent with subsequent API requests.
-The security layer validates the JWT.
-Valid requests are allowed to access protected resources.
+## 🔐 Authentication & Authorization
 
-Example:- Authorization: Bearer <your-jwt-token>
+The application uses **Spring Security with JWT** for stateless authentication.
 
+### Authentication Flow
 
-🗄️ Database
+1. User submits login credentials.
+2. Spring Security authenticates the user.
+3. The application generates a JWT.
+4. The client stores the token.
+5. The token is sent with subsequent API requests.
+6. The security layer validates the JWT.
+7. Valid requests are allowed to access protected resources.
 
-The project uses PostgreSQL as the relational database and Spring Data JPA/Hibernate for persistence.
+Example:
 
-General data flow:
+```http
+Authorization: Bearer <your-jwt-token>
+```
 
+---
+
+## 🗄️ Database
+
+The project uses **PostgreSQL** as the relational database and **Spring Data JPA/Hibernate** for persistence.
+
+### Data Flow
+
+```text
 REST Request
      │
      ▼
@@ -154,36 +155,105 @@ Hibernate
      │
      ▼
 PostgreSQL
+```
 
-JPA is responsible for mapping Java entities to database tables and Hibernate handles the ORM implementation.
+JPA is responsible for mapping Java entities to database tables, while Hibernate handles the ORM implementation.
 
-📖 API Documentation
+---
+
+## 📖 API Documentation
 
 Swagger/OpenAPI is integrated into the application for API documentation and testing.
 
-After starting the application, access the Swagger UI at:
+After starting the application, access Swagger UI at:
 
+```text
 http://localhost:8080/swagger-ui/index.html
+```
 
 From Swagger UI, you can:
 
-View available endpoints
-Inspect request/response models
-Test APIs
-Provide JWT authentication for protected endpoints
+- View available endpoints
+- Inspect request and response models
+- Test APIs
+- Provide JWT authentication for protected endpoints
 
-⚙️ Getting Started
-Prerequisites
+---
+
+## ⚙️ Getting Started
+
+### Prerequisites
 
 Make sure you have:
 
-Java 21
-Maven
-PostgreSQL
-Git
-Docker (optional)
+- Java 21
+- Maven
+- PostgreSQL
+- Git
+- Docker (optional)
 
-📂 Project Structure
+---
+
+## 📥 Clone Repository
+
+```bash
+git clone https://github.com/Adarsh-cha/FitnessTracker.git
+cd FitnessTracker
+```
+
+---
+
+## 🗄️ Configure PostgreSQL
+
+Create a PostgreSQL database:
+
+```sql
+CREATE DATABASE fitness_tracker;
+```
+
+Configure your database credentials in the Spring Boot configuration:
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/fitness_tracker
+spring.datasource.username=YOUR_USERNAME
+spring.datasource.password=YOUR_PASSWORD
+```
+
+## ▶️ Run the Application
+
+### Using Maven
+
+```bash
+./mvnw spring-boot:run
+```
+
+### Windows
+
+```bash
+mvnw.cmd spring-boot:run
+```
+
+### Build the Project
+
+```bash
+./mvnw clean package
+```
+
+### Run the Generated JAR
+
+```bash
+java -jar target/*.jar
+```
+
+The application will be available at:
+
+```text
+http://localhost:8080
+```
+
+## 📂 Project Structure
+
+```text
 FitnessTracker/
 │
 ├── .mvn/
@@ -205,3 +275,61 @@ FitnessTracker/
 ├── mvnw.cmd
 ├── pom.xml
 └── README.md
+```
+
+---
+
+## 🧠 Key Concepts Demonstrated
+
+- REST API development
+- Layered architecture
+- Dependency Injection
+- Spring Boot
+- Spring Web
+- Spring Security
+- JWT authentication
+- Authentication & Authorization
+- Spring Data JPA
+- Hibernate ORM
+- PostgreSQL integration
+- Request validation
+- CRUD operations
+- Swagger/OpenAPI
+- Docker containerization
+- Maven project management
+
+---
+
+## 🔄 Request Lifecycle
+
+A typical protected request follows this flow:
+
+```text
+HTTP Request
+     │
+     ▼
+Spring Security Filter Chain
+     │
+     ▼
+JWT Validation
+     │
+     ▼
+Authentication Context
+     │
+     ▼
+Controller
+     │
+     ▼
+Service
+     │
+     ▼
+Repository
+     │
+     ▼
+Hibernate / JPA
+     │
+     ▼
+PostgreSQL
+     │
+     ▼
+HTTP Response
