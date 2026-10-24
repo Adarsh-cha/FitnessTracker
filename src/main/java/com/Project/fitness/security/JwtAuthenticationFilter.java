@@ -40,7 +40,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 if (roles != null) {
                     authorities = roles
                             .stream()
-                            .map(role -> (GrantedAuthority) new SimpleGrantedAuthority(role))
+                            .map(role -> (GrantedAuthority) new SimpleGrantedAuthority( "ROLE_" + role))
                             .toList();
                 }
 
@@ -51,7 +51,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (Exception e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
         filterChain.doFilter(request, response);
     }
